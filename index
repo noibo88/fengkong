@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+  <title>NEW88 - NỘI BỘ</title>
+<link rel="icon" href="https://raw.githubusercontent.com/new8866/noibofk/main/Logo-New88.ico" type="image/x-icon">
+
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NEW88 - Bộ Phận Rủi Ro" />
+<meta http-equiv="content-language" content="vi-VN">
+  <meta property="og:description" content="Giao diện nhập liệu nhanh cho Khuyến mãi và Đại lý - Dành riêng cho bộ phận Rủi Ro của NEW88." />
+  <meta property="og:image" content="https://i.imgur.com/ACcgWQK.png" />
+  <meta property="og:url" content="https://new8866.github.io/noibofk/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NEW88 - Bộ phận Rủi Ro" />
+  <meta name="twitter:description" content="Giao diện nhập liệu nhanh cho Khuyến mãi và Đại lý - Dành riêng cho bộ phận Rủi Ro của NEW88." />
+  <meta name="twitter:image" content="https://i.imgur.com/ACcgWQK.png" />
+  <meta charset="UTF-8">
+ 
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d35400;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .link-container {
+      background: #fff;
+      padding: 30px 20px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+
+    .action {
+      margin-bottom: 30px;
+    }
+
+    .action a {
+      display: inline-block;
+      padding: 14px 24px;
+      background-color: #2980b9;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .action a:hover {
+      background-color: #1c6690;
+    }
+  </style>
+</head>
+<body>
+  <div class="link-container">
+    <h1>BỘ PHẬN RỦI RO NEW88</h1>
+
+    <div class="action">
+      <a href="https://script.google.com/macros/s/AKfycbynq81nt4wmU1fiRvgBRadZHuvKCo-PyWVpddAITKQCkpV_ZC9jMizIYdjOw7FdA1UWuA/exec">
+        🎁 Nhập khuyến mãi
+      </a>
+    </div>
+
+    <div class="action">
+      <a href="https://script.google.com/macros/s/AKfycbz7lomHWp0u3j7GbPj37DKvGXw4XXJ1M1fdWRhy-6Ji8KdVFPcEo0rl97FEI20JlXQy/exec">
+        🏢 Nhập thông tin đại lý
+      </a>
+    </div>
+<div class="action">
+      <a href="https://script.google.com/macros/s/AKfycbw9hJaakdsjjQuSRQMuLjw0PRz0okXyaIsB_xkPTxa0BsARRaSHY041pYcd_2vNL4lw/exec">
+        📖 Test định kỳ tự luận
+      </a>
+    </div>
+<div class="action">
+      <a href="https://script.google.com/macros/s/AKfycbzBDaC4F_d74SDkdiEjZ1M93jphp2DoLPJHaTwIyurywZpq7ih0xWkdGiqCsl5Kf19I0Q/exec">
+        📑 Test định kỳ trắc nghiệm
+      </a>
+    </div>
+  </div>
+</body>
+</html>
