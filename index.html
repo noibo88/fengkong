@@ -5,45 +5,54 @@
   <title>NEW88 - NỘI BỘ</title>
   <link rel="icon" href="https://raw.githubusercontent.com/noibo88/fengkong/main/fk88.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Open Graph -->
+  
   <meta property="og:title" content="NEW88 - Bộ Phận Rủi Ro" />
-<meta http-equiv="content-language" content="vi-VN">
+  <meta http-equiv="content-language" content="vi-VN">
   <meta property="og:description" content="Giao diện nhập thông tin - Dành riêng cho bộ phận Rủi Ro của NEW88" />
   <meta property="og:image" content="https://i.imgur.com/ACcgWQK.png" />
   <meta property="og:url" content="https://noibo88.github.io/fengkong/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card -->
+  
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NEW88 - Bộ phận Rủi Ro" />
   <meta name="twitter:description" content="Giao diện nhập thông tin - Dành riêng cho bộ phận Rủi Ro của NEW88" />
   <meta name="twitter:image" content="https://i.imgur.com/ACcgWQK.png" />
-  <meta charset="UTF-8">
+
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      background: linear-gradient(to right, #fdfbfb, #ebedee),
+                  url('https://i.imgur.com/LojevMZ.jpeg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
       margin: 0;
       padding: 20px;
       position: relative;
     }
+
     body::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image: url('https://via.placeholder.com/1600x900');
+      background-image: url('https://i.imgur.com/S0dbAKJ.jpeg');
       background-size: cover;
       background-position: center;
-      opacity: 0.1;
+      opacity: 0.3;
       z-index: -1;
+      animation: bgZoom 20s ease-in-out infinite;
     }
+
     h1 {
       color: #d35400;
       text-align: center;
       margin-bottom: 30px;
       font-size: 28px;
     }
+
     .main-container {
       display: flex;
       justify-content: center;
@@ -52,6 +61,7 @@
       margin: auto;
       flex-wrap: wrap;
     }
+
     .yourong-title,
     .ranking-title {
       font-size: 20px;
@@ -60,6 +70,7 @@
       margin-bottom: 15px;
       text-align: center;
     }
+
     .link-container,
     .ranking-container {
       background: #fff;
@@ -71,9 +82,11 @@
       box-sizing: border-box;
       position: relative;
     }
+
     .action {
       margin: 15px 0;
     }
+
     .action a {
       display: block;
       padding: 14px 24px;
@@ -84,27 +97,25 @@
       font-weight: bold;
       transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
+
     .action a:hover {
       background-color: #1c6690;
       transform: scale(1.05);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
 
-    /* BXH tháng 4 luôn hiển thị */
     .ranking-list, .ranking-list2 {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    /* Ẩn BXH tháng 5 */
     .ranking-list2 {
-      display: none; /* Ẩn BXH tháng 5 mặc định */
+      display: none;
     }
 
-    /* Hiển thị BXH tháng 5 khi hover vào phần .ranking-container */
     .ranking-container:hover .ranking-list2 {
-      display: block; /* Hiển thị BXH tháng 5 khi hover */
+      display: block;
     }
 
     .ranking-list li, .ranking-list2 li {
@@ -117,43 +128,57 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: default;
     }
+
     .ranking-list li:hover, .ranking-list2 li:hover {
       transform: scale(1.05);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
+
     .ranking-list li:nth-child(1) {
       background: linear-gradient(90deg, #fff700, #ffd700, #fff700);
       animation: pulseGold 2s infinite;
       font-weight: bold;
-      color: #000;
+      color: #2c3e50;
       box-shadow: 0 0 12px #f5d300;
     }
+
     @keyframes pulseGold {
       0% { box-shadow: 0 0 10px rgba(255, 223, 0, 0.6); }
       50% { box-shadow: 0 0 20px rgba(255, 223, 0, 0.9); }
       100% { box-shadow: 0 0 10px rgba(255, 223, 0, 0.6); }
     }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
     .ranking-list li:nth-child(2) {
       background: linear-gradient(145deg, #dfe9f3, #a6b8c5);
       color: #2c3e50;
       font-weight: bold;
       box-shadow: 0 4px 10px rgba(180, 180, 180, 0.5);
     }
+
     .ranking-list li:nth-child(3) {
       background: linear-gradient(145deg, #d8a76c, #a46c33);
-      color: #fffaf0;
+      color: #2c3e50;
       font-weight: bold;
       box-shadow: 0 4px 10px rgba(160, 100, 30, 0.5);
     }
+
     .ranking-list2 li:nth-child(1) {
       background: #FFFF00;
       color: #000;
       font-weight: bold;
     }
+
     .ranking-list2 li:nth-child(2) {
-     background: linear-gradient(145deg, #dfe9f3, #a6b8c5);
+      background: linear-gradient(145deg, #dfe9f3, #a6b8c5);
       color: #2c3e50;
     }
+
     @media (max-width: 768px) {
       .main-container {
         flex-direction: column;
@@ -174,19 +199,35 @@
         font-size: 16px;
       }
     }
+
+    
+    .spin-logo {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 60px;
+      z-index: 999;
+      animation: spin 10s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
   <h1>BỘ PHẬN RỦI RO NEW88</h1>
   <div class="main-container">
     <div class="ranking-container">
-      <div class="ranking-title">🏆 BXH KPI THÁNG 04</div>
+      <div class="ranking-title">🏆 BXH TOP KPI THÁNG 04</div>
       <ul class="ranking-list">
         <li>👑 KING +15</li>
         <li>🥈 JADE +10</li>
         <li>🥉 ORYO +5</li>
       </ul>
-      <div class="ranking-title">🏆 BXH KPI THÁNG 05</div>
+      <div class="ranking-title">🏆 BXH TOP KPI THÁNG 05</div>
       <ul class="ranking-list2">
         <li>🥇 ???</li>
         <li>🥈 ???</li>
@@ -216,5 +257,8 @@
       </div>
     </div>
   </div>
+
+
+  <img src="https://i.imgur.com/ACcgWQK.png" class="spin-logo" alt="yourong99">
 </body>
 </html>
