@@ -1,94 +1,205 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-  <title>NEW88 - NỘI BỘ</title>
-<link rel="icon" href="https://raw.githubusercontent.com/noibo88/fengkong/main/fk88.ico" type="image/x-icon">
-
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="NEW88 - Bộ Phận Rủi Ro" />
-<meta http-equiv="content-language" content="vi-VN">
-  <meta property="og:description" content="Giao diện nhập liệu nhanh cho Khuyến mãi và Đại lý - Dành riêng cho bộ phận Rủi Ro của NEW88." />
-  <meta property="og:image" content="https://i.imgur.com/ACcgWQK.png" />
-  <meta property="og:url" content="https://88noibo.github.io/fengkong/" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NEW88 - Bộ phận Rủi Ro" />
-  <meta name="twitter:description" content="Giao diện nhập liệu nhanh cho Khuyến mãi và Đại lý - Dành riêng cho bộ phận Rủi Ro của NEW88." />
-  <meta name="twitter:image" content="https://i.imgur.com/ACcgWQK.png" />
   <meta charset="UTF-8">
- 
+  <title>NEW88 - NỘI BỘ</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/noibo88/fengkong/main/fk88.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background-color: #f4f4f4;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
       margin: 0;
-      padding: 40px;
-      text-align: center;
+      padding: 20px;
+      position: relative;
     }
-
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('https://via.placeholder.com/1600x900');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
+    }
     h1 {
       color: #d35400;
-      font-size: 28px;
-      margin-bottom: 40px;
-    }
-
-    .link-container {
-      background: #fff;
-      padding: 30px 20px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 12px;
-    }
-
-    .action {
+      text-align: center;
       margin-bottom: 30px;
+      font-size: 28px;
     }
-
+    .main-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    .yourong-title,
+    .ranking-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .link-container,
+    .ranking-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      flex: 1 1 300px;
+      max-width: 400px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .action {
+      margin: 15px 0;
+    }
     .action a {
-      display: inline-block;
+      display: block;
       padding: 14px 24px;
       background-color: #2980b9;
       color: white;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
-
     .action a:hover {
       background-color: #1c6690;
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    /* BXH tháng 4 luôn hiển thị */
+    .ranking-list, .ranking-list2 {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Ẩn BXH tháng 5 */
+    .ranking-list2 {
+      display: none; /* Ẩn BXH tháng 5 mặc định */
+    }
+
+    /* Hiển thị BXH tháng 5 khi hover vào phần .ranking-container */
+    .ranking-container:hover .ranking-list2 {
+      display: block; /* Hiển thị BXH tháng 5 khi hover */
+    }
+
+    .ranking-list li, .ranking-list2 li {
+      padding: 10px 15px;
+      margin: 8px 0;
+      border-radius: 10px;
+      background-color: #f6f9fc;
+      font-weight: 500;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .ranking-list li:hover, .ranking-list2 li:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+    .ranking-list li:nth-child(1) {
+      background: linear-gradient(90deg, #fff700, #ffd700, #fff700);
+      animation: pulseGold 2s infinite;
+      font-weight: bold;
+      color: #000;
+      box-shadow: 0 0 12px #f5d300;
+    }
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 10px rgba(255, 223, 0, 0.6); }
+      50% { box-shadow: 0 0 20px rgba(255, 223, 0, 0.9); }
+      100% { box-shadow: 0 0 10px rgba(255, 223, 0, 0.6); }
+    }
+    .ranking-list li:nth-child(2) {
+      background: linear-gradient(145deg, #dfe9f3, #a6b8c5);
+      color: #2c3e50;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(180, 180, 180, 0.5);
+    }
+    .ranking-list li:nth-child(3) {
+      background: linear-gradient(145deg, #d8a76c, #a46c33);
+      color: #fffaf0;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(160, 100, 30, 0.5);
+    }
+    .ranking-list2 li:nth-child(1) {
+      background: #FFFF00;
+      color: #000;
+      font-weight: bold;
+    }
+    .ranking-list2 li:nth-child(2) {
+     background: linear-gradient(145deg, #dfe9f3, #a6b8c5);
+      color: #2c3e50;
+    }
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      .yourong-title,
+      .ranking-title {
+        font-size: 18px;
+      }
+      .action a {
+        font-size: 16px;
+        padding: 12px 18px;
+      }
+      .ranking-list li, .ranking-list2 li {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="link-container">
-    <h1>BỘ PHẬN RỦI RO NEW88</h1>
-
-    <div class="action">
-      <a href="https://script.google.com/macros/s/AKfycbynq81nt4wmU1fiRvgBRadZHuvKCo-PyWVpddAITKQCkpV_ZC9jMizIYdjOw7FdA1UWuA/exec">
-        🎁 Nhập khuyến mãi
-      </a>
+  <h1>BỘ PHẬN RỦI RO NEW88</h1>
+  <div class="main-container">
+    <div class="ranking-container">
+      <div class="ranking-title">🏆 BXH KPI THÁNG 04</div>
+      <ul class="ranking-list">
+        <li>👑 KING +15</li>
+        <li>🥈 JADE +10</li>
+        <li>🥉 ORYO +5</li>
+      </ul>
+      <div class="ranking-title">🏆 BXH KPI THÁNG 05</div>
+      <ul class="ranking-list2">
+        <li>🥇 ???</li>
+        <li>🥈 ???</li>
+      </ul>
     </div>
-
-    <div class="action">
-      <a href="https://script.google.com/macros/s/AKfycbz7lomHWp0u3j7GbPj37DKvGXw4XXJ1M1fdWRhy-6Ji8KdVFPcEo0rl97FEI20JlXQy/exec">
-        🏢 Nhập thông tin đại lý
-      </a>
-    </div>
-<div class="action">
-      <a href="https://script.google.com/macros/s/AKfycbw9hJaakdsjjQuSRQMuLjw0PRz0okXyaIsB_xkPTxa0BsARRaSHY041pYcd_2vNL4lw/exec">
-        📖 Test định kỳ tự luận
-      </a>
-    </div>
-<div class="action">
-      <a href="https://script.google.com/macros/s/AKfycbzBDaC4F_d74SDkdiEjZ1M93jphp2DoLPJHaTwIyurywZpq7ih0xWkdGiqCsl5Kf19I0Q/exec">
-        📑 Test định kỳ trắc nghiệm
-      </a>
+    <div class="link-container">
+      <div class="yourong-title">⭐️ KIỂM TRA THÔNG TIN</div>
+      <div class="action">
+        <a href="https://script.google.com/macros/s/AKfycbynq81nt4wmU1fiRvgBRadZHuvKCo-PyWVpddAITKQCkpV_ZC9jMizIYdjOw7FdA1UWuA/exec">
+          🎁 Nhập khuyến mãi
+        </a>
+      </div>
+      <div class="action">
+        <a href="https://script.google.com/macros/s/AKfycbz7lomHWp0u3j7GbPj37DKvGXw4XXJ1M1fdWRhy-6Ji8KdVFPcEo0rl97FEI20JlXQy/exec">
+          🏢 Nhập thông tin đại lý
+        </a>
+      </div>
+      <div class="action">
+        <a href="https://script.google.com/macros/s/AKfycbw9hJaakdsjjQuSRQMuLjw0PRz0okXyaIsB_xkPTxa0BsARRaSHY041pYcd_2vNL4lw/exec">
+          📖 Test định kỳ tự luận
+        </a>
+      </div>
+      <div class="action">
+        <a href="https://script.google.com/macros/s/AKfycbzBDaC4F_d74SDkdiEjZ1M93jphp2DoLPJHaTwIyurywZpq7ih0xWkdGiqCsl5Kf19I0Q/exec">
+          📑 Test định kỳ trắc nghiệm
+        </a>
+      </div>
     </div>
   </div>
 </body>
