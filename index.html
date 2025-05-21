@@ -215,6 +215,94 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background: white;
+      padding: 1rem 1.5rem 1.5rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 700px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.3s ease-in-out;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popup h3 {
+      margin-top: 0;
+      color: #ff6600;
+      text-align: center;
+    }
+
+    .popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+    }
+
+    .popup li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .popup button.close-btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      align-self: center;
+      flex-shrink: 0;
+      width: 120px;
+    }
+
+    .popup iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      flex-grow: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .popup .popup {
+  max-width: 360px !important;
+  padding: 1.2rem 1.5rem !important;
+}
+ .close-x {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+  }
+
+  .popup {
+    position: relative; /* cần để position tuyệt đối của .close-x hoạt động đúng */
+    padding-top: 2rem;
+  }
   </style>
 </head>
 <body>
@@ -231,6 +319,7 @@
       <ul class="ranking-list2">
         <li>🥇 ???</li>
         <li>🥈 ???</li>
+        <button onclick="showPopup('thongke')">Kiểm tra</button>
       </ul>
     </div>
     <div class="link-container">
@@ -255,10 +344,132 @@
           📑 Test định kỳ trắc nghiệm
         </a>
       </div>
+      
     </div>
   </div>
 
+<div class="popup-overlay" id="popup-thongke" style="display:none;">
+  <div class="popup"><span class="close-x" onclick="closePopup('thongke')">❌</span>
+    <h3>Hiệu suất kiểm tra khách</h3>
+    <label>Nhập tháng/năm</label>
+<input type="text" id="input-monthYear" placeholder="Ví dụ: 05/2025" maxlength="7" />
 
+    <button onclick="sendMonthStats()">Gửi</button>
+   
+    <br><br>
+    <h3 id="thongKeTitle">Hiệu suất kiểm tra tháng</h3>
+    <table id="thongKeTable" border="1" style="width: 100%; text-align: center; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Tên nhân viên</th>
+          <th>Hiệu suất/Tích cực</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script>
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyPl6M3OOiVj3TB3j43VvyVmy8bDtxSDwyllxOO9_a7LH4U9_Nry_Tg5wtYS4VdIsQp/exec';
+// Đóng popup
+  function closePopup(id) {
+    if (!id) {
+      document.getElementById('popup').style.display = 'none';
+    } else {
+      const popup = document.getElementById('popup-' + id);
+      if (popup) popup.style.display = 'none';
+    }
+  }
+
+  // Hiển thị popup theo id
+  function showPopup(id) {
+    document.querySelectorAll('.popup-overlay').forEach(p => p.style.display = 'none');
+    const popup = document.getElementById('popup-' + id);
+    if (popup) popup.style.display = 'flex';
+  }
+
+  function openReportPopup(id) {
+    closePopup('baocao');
+    showPopup(id);
+  }
+// Gửi tháng cho thống kê
+function sendMonthStats() {
+  const monthYear = document.getElementById('input-monthYear').value.trim();
+  const regex = /^(0[1-9]|1[0-2])\/\d{4}$/; // kiểm tra đúng định dạng MM/YYYY
+
+  if (!regex.test(monthYear)) {
+    alert('Vui lòng nhập đúng định dạng tháng/năm, ví dụ: 05/2025');
+    return;
+  }
+
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `monthYear=${encodeURIComponent(monthYear)}`
+  })
+  .then(res => res.json())
+  .then(data => {
+  if (data.status === 'success') {
+  loadThongKeTable(monthYear);
+}
+})
+
+  .catch(err => {
+    alert('Lỗi khi gửi dữ liệu thống kê.');
+    console.error(err);
+  });
+}
+
+
+
+// Tải dữ liệu thống kê từ Google Sheets
+// Hàm load lại bảng thống kê, nhận tháng/năm để cập nhật tiêu đề
+function loadThongKeTable(monthYear) {
+  // Cập nhật tiêu đề bảng
+  const titleEl = document.getElementById('thongKeTitle');
+  if (titleEl && monthYear) {
+    titleEl.textContent = `Hiệu suất kiểm tra tháng ${monthYear}`;
+  }
+
+  fetch(WEB_APP_URL)
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById('thongKeTable').querySelector('tbody');
+      tbody.innerHTML = '';
+
+      data.forEach(row => {
+        const name = row.name || '';
+        const total = parseInt(row.total) || 0;
+        const pass = parseInt(row.pass) || 0;
+        const ratio = `${pass}/${total}`;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${name}</td><td>${ratio}</td>`;
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(err => {
+      console.error('Lỗi tải dữ liệu thống kê:', err);
+      alert('Không thể tải dữ liệu thống kê.');
+    });
+}
+
+
+// Hiển thị popup theo ID (mở thống kê thì load luôn)
+function showPopup(id) {
+  document.querySelectorAll('.popup-overlay').forEach(p => p.style.display = 'none');
+  const popup = document.getElementById('popup-' + id);
+  if (popup) {
+    popup.style.display = 'flex';
+    if (id === 'thongke') loadThongKeTable();
+  }
+}
+
+
+
+
+
+
+</script>
   <img src="https://i.imgur.com/ACcgWQK.png" class="spin-logo" alt="yourong99">
 </body>
 </html>
