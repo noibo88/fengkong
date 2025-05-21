@@ -1,4 +1,4 @@
-<script>
+
 const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyPl6M3OOiVj3TB3j43VvyVmy8bDtxSDwyllxOO9_a7LH4U9_Nry_Tg5wtYS4VdIsQp/exec';
 // Đóng popup
   function closePopup(id) {
@@ -98,4 +98,4 @@ function showPopup(id) {
 
 
 
-</script>
+
