@@ -1,4 +1,4 @@
-<style>
+
 .ranking-list, .ranking-list2 {
       list-style: none;
       padding: 0;
@@ -198,4 +198,4 @@
     position: relative; /* cần để position tuyệt đối của .close-x hoạt động đúng */
     padding-top: 2rem;
   }
-</style>
+
