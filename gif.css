@@ -66,11 +66,13 @@
 #draggableGif {
   position: fixed;
   top: 50%;
-  left: calc(100vw - 120px); /* ví dụ: bên phải nhưng bằng left */
-  transform: translateY(-50%);
+  left: calc(100vw - 110px); /* sát phải ban đầu */
   width: 100px;
   height: 100px;
-  cursor: grab;
+  transform: translateY(-50%);
   z-index: 9999;
+  cursor: grab;
+  touch-action: none; /* Ngăn chặn cuộn khi kéo trên thiết bị cảm ứng */
 }
+
 
