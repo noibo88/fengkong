@@ -29,7 +29,10 @@
   transition: 0.3s ease;
   pointer-events: auto;
 }
-
+.gif-wrapper.active .menu-item {
+  opacity: 1;
+  pointer-events: auto;
+}
 .circle-box {
   width: 70px;
   height: 70px;
