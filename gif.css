@@ -62,9 +62,7 @@
 }
 
 
-.gif-wrapper:hover .menu-item {
-  opacity: 1;
-}
+
 
 #draggableGif {
   position: fixed;
