@@ -24,12 +24,6 @@
   <link rel="stylesheet" href="gif.css" />
 </head>
 <body>
-<form onsubmit="login(event)">
-  <input type="text" id="username" placeholder="Tên đăng nhập" required>
-  <input type="password" id="password" placeholder="Mật khẩu" required>
-  <button type="submit">Đăng nhập</button>
-  <p id="loginResult"></p>
-</form>
   <h1>BỘ PHẬN RỦI RO NEW88</h1>
   <div class="main-container">
     <div class="ranking-container">
@@ -117,31 +111,6 @@
   <img src="https://i.imgur.com/ACcgWQK.png" class="spin-logo" alt="yourong99">
 <script src="script.js"></script>
 <script src="gif.js"></script>
-<script>
-  async function login(e) {
-    e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    const response = await fetch("LINK_WEB_APP_SCRIPT", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const result = await response.json();
-    if (result.success) {
-      localStorage.setItem("loggedIn", "true");
-      window.location.href = "trangchinh.html";
-    } else {
-      document.getElementById("loginResult").innerText = "Sai tài khoản hoặc mật khẩu";
-    }
-  }
- const token = localStorage.getItem('token');
-  if (!token) {
-    window.location.href = 'login.html';
-  }
-</script>
 
 </body>
 </html>
