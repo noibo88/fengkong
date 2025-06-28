@@ -64,12 +64,13 @@
 }
 
 #draggableGif {
-  position: fixed;      /* cố định trên màn hình khi cuộn */
-  top: 50%;             /* căn giữa dọc */
-  right: 0;             /* sát mép bên phải */
-  transform: translateY(-50%); /* căn chỉnh để đúng trung tâm dọc */
+  position: fixed;
+  top: 50%;
+  left: calc(100vw - 120px); /* ví dụ: bên phải nhưng bằng left */
+  transform: translateY(-50%);
   width: 100px;
   height: 100px;
   cursor: grab;
   z-index: 9999;
 }
+
