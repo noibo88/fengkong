@@ -17,30 +17,26 @@ let isDragging = false;
 let offsetX = 0;
 let offsetY = 0;
 
-gif.style.top = "50%";
-gif.style.right = "0";
-gif.style.transform = "translateY(-50%)";
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
 
-gif.addEventListener("mousedown", e => {
+gif.addEventListener("mousedown", (e) => {
   isDragging = true;
   offsetX = e.clientX - gif.offsetLeft;
   offsetY = e.clientY - gif.offsetTop;
   gif.style.cursor = "grabbing";
 });
 
-document.addEventListener("mousemove", e => {
+document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
 
   gif.style.left = (e.clientX - offsetX) + "px";
   gif.style.top = (e.clientY - offsetY) + "px";
-
-  gif.style.right = "auto";
   gif.style.transform = "none";
 });
 
 document.addEventListener("mouseup", () => {
-  if (!isDragging) return;
   isDragging = false;
   gif.style.cursor = "grab";
-  // Giữ nguyên vị trí kéo cuối cùng, không nhảy về mặc định
 });
