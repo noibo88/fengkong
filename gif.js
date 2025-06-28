@@ -14,7 +14,7 @@ const radius = 120;
   });
 
   // Lấy phần tử container
-  const gifWrapper = document.getElementById("gifWrapper");
+  const gifWrapper = document.getElementById("draggableGif");
 
   // Bật/tắt menu khi click trên mobile
   gifWrapper.addEventListener("click", e => {
