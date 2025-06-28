@@ -1,73 +1,82 @@
-// ------------------------------
-// 1. Bán cầu: bố trí các mục quanh GIF
-// ------------------------------
-const radius = 120; // khoảng cách từ tâm ra các mục
-const centerX = 50;
-const centerY = 50;
+const radius = 120;
+  const centerX = 50;
+  const centerY = 50;
 
-document.querySelectorAll('.menu-item').forEach(el => {
-  const angleDeg = parseFloat(el.dataset.angle);
-  const angleRad = angleDeg * (Math.PI / 180);
+  document.querySelectorAll('.menu-item').forEach(el => {
+    const angleDeg = parseFloat(el.dataset.angle);
+    const angleRad = angleDeg * Math.PI / 180;
 
-  const x = centerX + radius * Math.cos(angleRad);
-  const y = centerY + radius * Math.sin(angleRad);
+    const x = centerX + radius * Math.cos(angleRad);
+    const y = centerY + radius * Math.sin(angleRad);
 
-  el.style.left = `${x}%`;
-  el.style.top = `${y}%`;
-});
+    el.style.left = `${x}%`;
+    el.style.top = `${y}%`;
+  });
 
-// ------------------------------
-// 2. Kéo GIF tự do: hỗ trợ chuột & cảm ứng
-// ------------------------------
-const gif = document.getElementById("draggableGif");
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
+  // Lấy phần tử container
+  const gifWrapper = document.getElementById("gifWrapper");
 
-// Lấy vị trí tương thích chuột & cảm ứng
-function getPosition(e) {
-  if (e.touches && e.touches.length > 0) {
-    return {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY
-    };
-  } else {
-    return {
-      x: e.clientX,
-      y: e.clientY
-    };
+  // Bật/tắt menu khi click trên mobile
+  gifWrapper.addEventListener("click", e => {
+    // Nếu click vào menu-item thì không toggle ẩn menu
+    if (e.target.closest('.menu-item')) return;
+    gifWrapper.classList.toggle("active");
+  });
+
+  // Kéo container
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  function getPosition(e) {
+    if(e.touches && e.touches.length > 0){
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
   }
-}
 
-function startDrag(e) {
-  e.preventDefault();
-  isDragging = true;
-  const pos = getPosition(e);
-  offsetX = pos.x - gif.offsetLeft;
-  offsetY = pos.y - gif.offsetTop;
-  gif.style.cursor = "grabbing";
-}
+  function startDrag(e){
+    e.preventDefault();
+    isDragging = true;
+    const pos = getPosition(e);
+    const rect = gifWrapper.getBoundingClientRect();
+    offsetX = pos.x - rect.left;
+    offsetY = pos.y - rect.top;
+    gifWrapper.classList.add('grabbing');
+  }
 
-function onDrag(e) {
-  if (!isDragging) return;
-  const pos = getPosition(e);
-  gif.style.left = (pos.x - offsetX) + "px";
-  gif.style.top = (pos.y - offsetY) + "px";
-  gif.style.right = "auto";
-  gif.style.transform = "none";
-}
+  function onDrag(e){
+    if(!isDragging) return;
+    const pos = getPosition(e);
+    let left = pos.x - offsetX;
+    let top = pos.y - offsetY;
 
-function endDrag() {
-  isDragging = false;
-  gif.style.cursor = "grab";
-}
+    // Giới hạn vị trí để không kéo ra ngoài màn hình
+    const maxLeft = window.innerWidth - gifWrapper.offsetWidth;
+    const maxTop = window.innerHeight - gifWrapper.offsetHeight;
 
-// Chuột
-gif.addEventListener("mousedown", startDrag);
-document.addEventListener("mousemove", onDrag);
-document.addEventListener("mouseup", endDrag);
+    if(left < 0) left = 0;
+    if(left > maxLeft) left = maxLeft;
+    if(top < 0) top = 0;
+    if(top > maxTop) top = maxTop;
 
-// Cảm ứng (mobile)
-gif.addEventListener("touchstart", startDrag, { passive: false });
-document.addEventListener("touchmove", onDrag, { passive: false });
-document.addEventListener("touchend", endDrag);
+    gifWrapper.style.left = left + "px";
+    gifWrapper.style.top = top + "px";
+    gifWrapper.style.right = "auto";
+    gifWrapper.style.transform = "none";
+  }
+
+  function endDrag(){
+    isDragging = false;
+    gifWrapper.classList.remove('grabbing');
+  }
+
+  // Sự kiện chuột
+  gifWrapper.addEventListener("mousedown", startDrag);
+  document.addEventListener("mousemove", onDrag);
+  document.addEventListener("mouseup", endDrag);
+
+  // Sự kiện cảm ứng
+  gifWrapper.addEventListener("touchstart", startDrag, {passive:false});
+  document.addEventListener("touchmove", onDrag, {passive:false});
+  document.addEventListener("touchend", endDrag);
